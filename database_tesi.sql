@@ -21,6 +21,7 @@ CREATE TABLE lezione(
 CREATE TABLE avvisi(
 	id INT AUTO_INCREMENT PRIMARY KEY,
     testo TEXT NOT NULL, 
+    data_pubblicazione DATE NOT NULL,
     corso_id INT NOT NULL,
     INDEX idx_corso (corso_id),
     FOREIGN KEY (corso_id) REFERENCES corso(id)
