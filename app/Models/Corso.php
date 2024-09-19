@@ -8,7 +8,8 @@ class Corso extends Model
 {
     protected $table = 'corso';
     public $timestamps = false; 
-
+    protected $fillable = ['canale', 'anno'];
+    
     public function lezioni(){
         return $this->hasMany(Lezione::class, 'corso_id');
     }

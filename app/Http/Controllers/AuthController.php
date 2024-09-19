@@ -25,6 +25,7 @@ class AuthController extends BaseController
         if ($user && Hash::check($credential['password'], $user->password)) {
             session()->put('user_type', $isProfessor ? 'professor' : 'student');
             session()->put('user_id', $user->id);
+            session()->put('name', $user->nome);
             return response()->json(['message' => 'Login effettuato con successo'], 200); 
         }
         return response()->json(['message' => 'Credenziali non valide'], 401); 
@@ -35,9 +36,9 @@ class AuthController extends BaseController
         $validatedData = $request->validate([
             'nome' => 'required|alpha',
             'cognome' => 'required|alpha',
-            'email' => 'required|email|unique:studente,email|unique:professore,email',
+            'email' => 'required|email|unique:studente,email',
             'password' => 'required|min:8',
-            'matricola' => 'required|numeric',
+            'matricola' => 'required|numeric|unique:studente,matricola',
         ]);
 
         
@@ -63,7 +64,8 @@ class AuthController extends BaseController
             return response()->json([
                 'logged_in' => true,
                 'user_type' => session('user_type'),
-                'user_id' => session('user_id')
+                'user_id' => session('user_id'),
+                'name' => session('name')
             ], 200); 
         }
 

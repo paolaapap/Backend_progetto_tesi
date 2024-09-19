@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DataRetrievalController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web'])->group(function () {
@@ -10,4 +11,8 @@ Route::middleware(['web'])->group(function () {
     Route::get('/check-session', [AuthController::class, 'checkSession']);
 });
 
+Route::get('/fetchCorsi', [DataRetrievalController::class, 'fetchCourses']);
+Route::get('/fetchLezioni', [DataRetrievalController::class, 'fetchLessons']);
+Route::post('/nuovaLezione', [DataRetrievalController::class, 'nuovaLezione']);
+Route::post('/nuovoAvviso', [DataRetrievalController::class, 'nuovoAvviso']);
 
