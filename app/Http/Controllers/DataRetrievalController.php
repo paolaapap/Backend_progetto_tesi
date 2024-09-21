@@ -65,4 +65,12 @@ class DataRetrievalController extends BaseController
         return response()->json($lezioni, 200);
     }
 
+    public function fetchAvvisi(){
+        $avvisi = Avvisi::orderBy('data_pubblicazione', 'asc')->get();
+        if ($avvisi->isEmpty()) {
+            return response()->json(['message' => 'Nessun corso disponibile'], 404);
+        }
+        return response()->json($avvisi, 200);
+    }
+
 }

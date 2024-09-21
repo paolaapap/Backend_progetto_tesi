@@ -13,6 +13,7 @@ Route::middleware(['web'])->group(function () {
 
 Route::get('/fetchCorsi', [DataRetrievalController::class, 'fetchCourses']);
 Route::get('/fetchLezioni', [DataRetrievalController::class, 'fetchLessons']);
+Route::get('/fetchAvvisi', [DataRetrievalController::class, 'fetchAvvisi']);
 Route::post('/nuovaLezione', [DataRetrievalController::class, 'nuovaLezione']);
 Route::post('/nuovoAvviso', [DataRetrievalController::class, 'nuovoAvviso']);
 
